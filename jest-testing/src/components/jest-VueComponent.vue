@@ -8,9 +8,9 @@
       return {
         message: 'hello!'
       }
-    },
-    created () {
-      this.message = 'bye!'
     }
+    // created () {
+    //   this.message = 'bye!'
+    // }
   }
 </script>

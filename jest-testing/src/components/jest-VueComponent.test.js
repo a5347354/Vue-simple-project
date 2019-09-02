@@ -1,7 +1,7 @@
 // import { mount } from '@vue/test-utils'
 // import Component from '@/src/components/jest-vueComponent.vue';
-import HelloWorld from '@/components/jestVueComponent.vue';
-
+import { shallow } from 'vue-test-utils'
+import VueComponent from '@/components/jest-VueComponent.vue';
 // describe('Component', () => {
 //   test('is a Vue instance', () => {
 //     const wrapper = mount(Component)
@@ -12,12 +12,32 @@ import HelloWorld from '@/components/jestVueComponent.vue';
 
 // Here are some Jasmine 2.0 tests, though you can
 // use any test runner / assertion library combo you prefer
-describe('MyComponent', () => {
+describe('VueComponent', () => {
   // Inspect the raw component options
   it('has a created hook', () => {
-    expect(typeof HelloWorld.created).toBe('function')
+    expect(typeof VueComponent.data).toBe('function')
   })
 });
+
+//測試一個Component的Data預設值，使用vm.message就可以得到該Component的Data值
+describe('MyComponent', () => {
+  let wrapper = shallow(VueComponent)
+  let vm = wrapper.vm
+
+  beforeEach(()=>{
+    wrapper = shallow(VueComponent)
+    vm = wrapper.vm
+  })
+
+  // Inspect the raw component options
+  it('Test default data of VueComponent ', () => {
+    expect(vm.message).toEqual('hello!')
+  })
+});
+
+
+
+
 
 // import Vue from "vue";
 // // import App from "../src/App";
