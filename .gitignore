@@ -1,0 +1,8 @@
+# node_modules
+/jest-testing/node_modules
+/router/node_modules
+
+
+# .DS_Store
+/router/.DS_Store
+.DS_Store
