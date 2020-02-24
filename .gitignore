@@ -1,6 +1,7 @@
 # node_modules
-/jest-testing/node_modules
+/element-ui/node_modules
 /router/node_modules
+/jest-testing/node_modules
 
 
 # .DS_Store
