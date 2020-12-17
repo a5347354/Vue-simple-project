@@ -8,7 +8,8 @@
             {{ element }}{{ element.title }}
           </div>
           <div style="position:absolute;right:0px;">
-            <span style="float: right ;margin-top: -20px;margin-right:5px;" @click="deleteEle(element)">
+            <span style="float: right ;margin-top: -20px;margin-right:5px;"
+            @click="deleteEle(element)">
               <i style="color:#ff4949" class="el-icon-delete" />
             </span>
           </div>
@@ -29,78 +30,81 @@
 </template>
 
 <script>
-import draggable from 'vuedraggable'
+import draggable from 'vuedraggable';
+
 export default {
   name: 'DndList',
   components: { draggable },
   props: {
     list1: {
       type: Array,
-      default () {
-        return []
-      }
+      default() {
+        return [];
+      },
     },
     list2: {
       type: Array,
-      default () {
-        return []
-      }
+      default() {
+        return [];
+      },
     },
     list1Title: {
       type: String,
-      default: 'list1'
+      default: 'list1',
     },
     list2Title: {
       type: String,
-      default: 'list2'
+      default: 'list2',
     },
     width1: {
       type: String,
-      default: '48%'
+      default: '48%',
     },
     width2: {
       type: String,
-      default: '48%'
-    }
+      default: '48%',
+    },
   },
   methods: {
-    isNotInList1 (v) {
-      return this.list1.every(k => v !== k)
+    isNotInList1(v) {
+      return this.list1.every((k) => v !== k);
     },
-    isNotInList2 (v) {
-      return this.list2.every(k => v !== k)
+    isNotInList2(v) {
+      return this.list2.every((k) => v !== k);
     },
-    deleteEle (ele) {
-      for (const item of this.list1) {
+    deleteEle(ele) {
+      this.list1.every(function (item) {
         if (item === ele) {
-          const index = this.list1.indexOf(item)
-          this.list1.splice(index, 1)
-          break
+          const index = this.list1.indexOf(item);
+          this.list1.splice(index, 1);
+          return false;
         }
-      }
+        return true;
+      });
       if (this.isNotInList2(ele)) {
-        this.list2.unshift(ele)
+        this.list2.unshift(ele);
       }
     },
-    pushEle (ele) {
-      for (const item of this.list2) {
+    pushEle(ele) {
+      this.list2.every(function (item) {
         if (item === ele) {
-          const index = this.list2.indexOf(item)
-          this.list2.splice(index, 1)
-          break
+          const index = this.list2.indexOf(item);
+          this.list2.splice(index, 1);
+          return false;
         }
-      }
+        return true;
+      });
       if (this.isNotInList1(ele)) {
-        this.list1.push(ele)
+        this.list1.push(ele);
       }
     },
-    setData (dataTransfer) {
+    setData(dataTransfer) {
       // to avoid Firefox bug
       // Detail see : https://github.com/RubaXa/Sortable/issues/1012
-      dataTransfer.setData('Text', '')
-    }
-  }
-}
+      dataTransfer.setData('Text', '');
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
