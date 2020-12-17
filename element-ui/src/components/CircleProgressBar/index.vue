@@ -1,24 +1,24 @@
 <template>
-    <svg class="stat-circle" viewBox="1.6 1.6 16.8 16.8">
-      <circle class="bg" cx="10" cy="10" r="8"/></circle>
-      <circle class="progress" cx="10" cy="10" r="8" :data-percentage="percentage"/></circle>
-      <text x="62%" y="70%">{{ percentage }}%</text>
-    </svg>
+  <svg class="stat-circle" viewBox="1.6 1.6 16.8 16.8">
+    <circle class="bg" cx="10" cy="10" r="8"/></circle>
+    <circle class="progress" cx="10" cy="10" r="8" :data-percentage="percentage"/></circle>
+    <text x="62%" y="70%">{{ percentage }}%</text>
+  </svg>
 </template>
 
 <script>
-export default {
-  mounted() {
-    const statCircle = document.querySelectorAll('.stat-circle circle');
-    for (let i = 0; i < statCircle.length; i + 1) {
-    //   const p = parseFloat(statCircle[i].dataset.percentage);
-    //   const off = -51 - ((51 / 100) * p);
-    //   new TweenMax.to(statCircle[i], 0.8, {
-    //     strokeDashoffset: off,
-    //   });
-    }
-  },
-};
+// export default {
+//   mounted() {
+//     const statCircle = document.querySelectorAll('.stat-circle circle');
+//     for (let i = 0; i < statCircle.length; i + 1) {
+//     //   const p = parseFloat(statCircle[i].dataset.percentage);
+//     //   const off = -51 - ((51 / 100) * p);
+//     //   new TweenMax.to(statCircle[i], 0.8, {
+//     //     strokeDashoffset: off,
+//     //   });
+//     }
+//   },
+// };
 </script>
 <style scoped lang="scss">
 .stat-circle {
