@@ -1,45 +1,89 @@
 <template>
-  <svg class="stat-circle" viewBox="1.6 1.6 16.8 16.8">
-    <circle class="bg" cx="10" cy="10" r="8"/></circle>
-    <circle class="progress" cx="10" cy="10" r="8" :data-percentage="percentage"/></circle>
-    <text x="62%" y="70%">{{ percentage }}%</text>
+  <div class="container">
+  <svg id="svg"
+    width="200"
+    height="200"
+    viewPort="0 0 100 100"
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg">
+    <circle
+      :r=r
+      cx="100"
+      cy="100"
+      fill="transparent"
+      stroke-dasharray="565.48"
+      stroke-dashoffset="0">
+    </circle>
+    <circle
+      id="bar"
+      :r=r
+      cx="100"
+      cy="100"
+      fill="transparent"
+      stroke-dasharray="565.48"
+      stroke-dashoffset="0">
+    </circle>
   </svg>
+  </div>
 </template>
 
 <script>
-// export default {
-//   mounted() {
-//     const statCircle = document.querySelectorAll('.stat-circle circle');
-//     for (let i = 0; i < statCircle.length; i + 1) {
-//     //   const p = parseFloat(statCircle[i].dataset.percentage);
-//     //   const off = -51 - ((51 / 100) * p);
-//     //   new TweenMax.to(statCircle[i], 0.8, {
-//     //     strokeDashoffset: off,
-//     //   });
-//     }
-//   },
-// };
+export default {
+  data() {
+    return {
+      percentage: 'hello!',
+      val: 40,
+      r: 90,
+      c: 0,
+      pct: 0,
+    };
+  },
+  mounted() {
+    this.c = Math.PI * (this.r * 2);
+    this.pct = ((100 - this.val) / 100) * this.c;
+  },
+};
 </script>
 <style scoped lang="scss">
-.stat-circle {
-  width: 75px;
-  circle.bg {
-    fill: none;
-    stroke: #f1f1f1;
-    stroke-width: 0.4;
-  }
-  circle.progress {
-    fill: none;
-    stroke: #ff3a42;
-    stroke-width: 0.8;
-    stroke-dasharray: 51 51;
-    stroke-dashoffset: -51;
-    stroke-linecap: round;
-  }
-  text {
-    font-size: 5px;
-    text-anchor: middle;
-    fill: #bbb;
-  }
+.container {
+  width: 50px;
+}
+#svg circle {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s linear;
+  stroke: #666;
+  stroke-width: 1em;
+}
+#svg #bar {
+  stroke: #FF9F1E;
+}
+#cont {
+  display: block;
+  height: 200px;
+  width: 200px;
+  margin: 2em auto;
+  box-shadow: 0 0 1em black;
+  border-radius: 100%;
+  position: relative;
+}
+#cont:after {
+  position: absolute;
+  display: block;
+  height: 160px;
+  width: 160px;
+  left: 50%;
+  top: 50%;
+  box-shadow: inset 0 0 1em black;
+  content: attr(data-pct)"%";
+  margin-top: -80px;
+  margin-left: -80px;
+  border-radius: 100%;
+  line-height: 160px;
+  font-size: 2em;
+  text-shadow: 0 0 0.5em black;
+}
+
+input {
+  color: #000;
 }
 </style>
