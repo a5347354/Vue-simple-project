@@ -45,6 +45,9 @@ export default {
       }
     }
   },
+  mounted() {
+    this.updateValue(this.value)
+  },
   watch: {
     value: function (val) {
       this.updateValue(val)
@@ -86,6 +89,9 @@ export default {
   },
   methods: {
     updateValue (val) {
+      if(val === undefined){
+        val = 0
+      }
       this.strokeCircle = 2 * Math.PI * this.radiusCircle
       this.strokeCircleOffset = this.strokeCircle * ((100 - val) / 100)
     }
