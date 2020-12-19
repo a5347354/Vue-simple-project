@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <CheckBox />
-    <ProgressBarCircle :options="options" :value="80"/>
+    <ProgressBarCircle :options="options" :value="60">
+      <div>90</div>
+    </ProgressBarCircle>
   </div>
 </template>
 

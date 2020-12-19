@@ -1,5 +1,8 @@
 <template>
-  <div id="progress-bar-circle">
+  <div class="progress-bar-circle" :width="width" :height="height"> 
+    <div class="content">
+      <slot><div>100%</div></slot>
+    </div>
     <svg
       :width="width"
       :height="height"
@@ -39,7 +42,6 @@ export default {
         height: 200,
         width: 200,
         strokeWidth: 5, // 外圓長度-內圓長度
-        type: 'circle'
       }
     }
   },
@@ -84,14 +86,30 @@ export default {
   },
   methods: {
     updateValue (val) {
-      this.strokeCircle = 2 * Math.PI * this.radiusCircle * (3/4)
-      this.strokeCircleOffset = this.strokeCircle * ((100 - val) / 100) * (3/4)
+      this.strokeCircle = 2 * Math.PI * this.radiusCircle
+      this.strokeCircleOffset = this.strokeCircle * ((100 - val) / 100)
     }
   }
 }
 </script>
 
 <style scoped>
+.progress-bar-circle {
+  position: relative;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
 svg {
   transform: rotate(-90deg);
 }
