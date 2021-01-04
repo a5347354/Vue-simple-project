@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <CheckBox />
-    <ProgressBarCircle :options="options" :value="60">
+    <ProgressBarCircle :options="options" :value="20">
       <div>90</div>
     </ProgressBarCircle>
   </div>
@@ -25,8 +25,8 @@ export default {
           backgroundColor: '#333333'
         },
         layout: {
-          height: 140,
-          width: 140,
+          height: 200,
+          width: 200,
           strokeWidth: 30,
         }
       }

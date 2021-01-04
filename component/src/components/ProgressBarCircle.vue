@@ -75,17 +75,29 @@ export default {
   },
   computed: {
     width () {
+      if (this.options.layout.width) {
+        return this.options.layout.width
+      }
       return this.defaultOptions.layout.width
     },
     height () {
+      if (this.options.layout.height) {
+        return this.options.layout.width
+      }
       return this.defaultOptions.layout.height
     },
     backgroundColor () {
+      if (this.options.progress.backgroundColor) {
+        return this.options.progress.backgroundColor
+      }
       return this.defaultOptions.progress.backgroundColor
     },
     progressColor () {
+      if (this.options.progress.color) {
+        return this.options.progress.color
+      }
       return this.defaultOptions.progress.color
-    },
+    }
   },
   methods: {
     updateValue (val) {
